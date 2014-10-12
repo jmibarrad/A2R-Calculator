@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -200,92 +201,50 @@ namespace HW1_JMIBARRA_21241103
             }
             return nomeclature;
         }
-
-        static ArrayList thousands = new ArrayList();
-        static ArrayList hundreds = new ArrayList();
-        static ArrayList tens = new ArrayList();
-        static ArrayList ones = new ArrayList();
+        
+        static ArrayList values = new ArrayList();
+        static ArrayList valuesCorrect = new ArrayList();
+        static readonly Dictionary<char, int> RomanNomInts = new Dictionary<char, int>()
+	    {
+	        {'I', 1},
+	        {'V', 5},
+	        {'X', 10},
+	        {'L', 50},
+            {'C', 100},
+	        {'D', 500},
+	        {'M', 1000},
+	    };
         public static void Convert_R2A(string input)
         {
-            var limit = input.Length;
-            for (int i = 0; i < limit; i++)
+            input = input.ToUpper();
+            for (int i = 0; i < input.Length; i++)
             {
-                if (input[i] == 'M'){
-                    thousands.Add(input[i]);
-                    input.Remove(i,1);
-                    limit -= 1;
-                }else if (input[i] == 'C' && input[i + 1] == 'M') { 
-                    hundreds.Add(input[i]);
-                    hundreds.Add(input[i + 1]);
-                    input.Remove(i,2);
-                    limit -= 2;
-                }else if (input[i] == 'C'&&input[i]=='D'){
-                    hundreds.Add(input[i]);
-                    hundreds.Add(input[i + 1]);
-                    input.Remove(i,2);
-                    limit -= 2;
-                }else if (input[i]=='C'){
-                    hundreds.Add(input[i]);
-                    input.Remove(i,1);
-                    limit -= 1;
-                }else if (input[i] == 'X' && input[i + 1] == 'C'){
-                    tens.Add(input[i]);
-                    tens.Add(input[i + 1]);
-                    input.Remove(i,2);
-                    limit -= 2;
-                }else if (input[i] == 'X' && input[i] == 'L'){
-                    tens.Add(input[i]);
-                    tens.Add(input[i + 1]);
-                    input.Remove(i,2);
-                    limit -= 2;
-                }else if (input[i] == 'X'){
-                    tens.Add(input[i]);
-                    input.Remove(i,1);
-                    limit -= 1;
-                }else if (input[i] == 'I' && input[i + 1] == 'X'){
-                    ones.Add(input[i]);
-                    ones.Add(input[i + 1]);
-                    input.Remove(i,2);
-                    limit -= 2;
-                }else if (input[i] == 'I' && input[i] == 'V'){
-                    ones.Add(input[i]);
-                    ones.Add(input[i + 1]);
-                    input.Remove(i,2);
-                    limit -= 2;
-                }else if (input[i] == 'I'){
-                    ones.Add(input[i]);
-                    input.Remove(i,1);
-                    limit -= 1;
+                if (RomanNomInts.ContainsKey(input[i]))
+                {
+                    int value = RomanNomInts[input[i]];
+                    values.Add(value);
                 }
-                i = 0;
-                Console.WriteLine(limit);
             }
-
         }
 
         public static void Convert_R2A()
         {
-            foreach (var v in thousands)
+            for (int i = 0; i < values.Count; i++)
             {
-                Console.Write(v);
-            }
-            Console.WriteLine("----");
+                for (int j = 0; j < i; j++)
+                {
+                    if (Int32.Parse(values[j].ToString()) < Int32.Parse(values[j + 1].ToString()))
+                    {
+                        valuesCorrect.Add(Int32.Parse(values[j + 1].ToString()) - Int32.Parse(values[j].ToString()));
+                    }
+                    else
+                    {
+                        valuesCorrect.Add(Int32.Parse(values[i].ToString()));
+                    }
 
-            foreach (var v in hundreds)
-            {
-                Console.Write(v);
-            }
-            Console.WriteLine("----");
 
-            foreach (var v in tens)
-            {
-                Console.Write(v);
+                }
             }
-            Console.WriteLine("----");
-            foreach (var v in ones)
-            {
-                Console.Write(v);
-            }  
         }
 
         private void btnConvert_Click(object sender, EventArgs e)
@@ -313,9 +272,8 @@ namespace HW1_JMIBARRA_21241103
                         MessageBox.Show("ERROR: Not a Valid Roman Number", "Syntax Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
                     else
                     {
-                        Console.WriteLine("Entro");
                         Convert_R2A(txtInput.Text);
-                        Convert_R2A();
+                        //Convert_R2A();
                     }
                 }
            //end validate Roman Nomeclature
