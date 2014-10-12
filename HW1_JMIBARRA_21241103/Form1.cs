@@ -216,6 +216,7 @@ namespace HW1_JMIBARRA_21241103
 	    };
         public static void Convert_R2A(string input)
         {
+            values.Clear();
             input = input.ToUpper();
             for (int i = 0; i < input.Length; i++)
             {
@@ -229,33 +230,46 @@ namespace HW1_JMIBARRA_21241103
 
         public static int Convert_R2A()
         {
+            valuesCorrect.Clear();
             int number=0;
             int limit = values.Count;
             for (int i = 0; i < limit; i++)
             {
+                if(limit>1)
                 for (int j = 0; j < i; j++)
                 {
-                    if (Int32.Parse(values[j].ToString()) < Int32.Parse(values[j + 1].ToString()))
-                    {
-                        valuesCorrect.Add(Int32.Parse(values[j + 1].ToString()) - Int32.Parse(values[j].ToString()));
-                        values[j] = 0;
-                        values[j + 1] = 0;
-                    }
-                    else
-                    {
-                        valuesCorrect.Add(Int32.Parse(values[j].ToString()));
-                        values[j] = 0;
+                        if (Int32.Parse(values[j].ToString()) < Int32.Parse(values[j + 1].ToString()))
+                        {
+                            valuesCorrect.Add(Int32.Parse(values[j + 1].ToString()) - Int32.Parse(values[j].ToString()));
+                            values[j] = 0;
+                            values[j + 1] = 0;
+                        }
+                        else if (Int32.Parse(values[j].ToString()) >= Int32.Parse(values[j + 1].ToString()))
+                        {
+                            valuesCorrect.Add(Int32.Parse(values[j + 1].ToString()) + Int32.Parse(values[j].ToString()));
+                            values[j] = 0;
+                            values[j + 1] = 0;
 
-                    }
-
+                        }
+                }
+                else
+                {
+                    valuesCorrect.Add(Int32.Parse(values[i].ToString()));
+                    values[i] = 0; 
                 }
             }
-
             foreach (var v in valuesCorrect)
             {
-                number += (int)v;
+                number += (Int32)v;
+
             }
             return number;
+        }
+
+        public static void sumRomanNumber()
+        {
+            
+
         }
 
         private void btnConvert_Click(object sender, EventArgs e)
@@ -284,7 +298,7 @@ namespace HW1_JMIBARRA_21241103
                     else
                     {
                         Convert_R2A(txtInput.Text);
-                        Convert_R2A();
+                        txtAns.Text=Convert_R2A().ToString();
                     }
                 }
            //end validate Roman Nomeclature
