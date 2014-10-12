@@ -34,7 +34,7 @@ namespace HW1_JMIBARRA_21241103
             cmbFrom.Items.Add("Roman");
             cmbTo.Items.Add("Arabic");
             cmbTo.Items.Add("Roman");
-
+            
             SendMessage(txtInput.Handle, EM_SETCUEBANNER, 0, "Input here...");
             txtAns.Text = "Wait for Answer...";
             cmbFrom.Text = "Arabic";
@@ -100,7 +100,6 @@ namespace HW1_JMIBARRA_21241103
         {
             var x = input.Length;
             ArrayList answer = new ArrayList();
-            answer.Clear();
             for (var i = 0; i < input.Length; i++)
                 AL.Add(input.ElementAt(i));
             
@@ -109,7 +108,7 @@ namespace HW1_JMIBARRA_21241103
                answer.Add(Convert_A2R(Int32.Parse(value.ToString()),Positional_Value(x)));
                 x--;
             }
-
+            AL.Clear();
             return String.Join(String.Empty, answer.ToArray()); ;
         }
 
@@ -202,10 +201,91 @@ namespace HW1_JMIBARRA_21241103
             return nomeclature;
         }
 
-        public static string Convert_R2A(string input)
+        static ArrayList thousands = new ArrayList();
+        static ArrayList hundreds = new ArrayList();
+        static ArrayList tens = new ArrayList();
+        static ArrayList ones = new ArrayList();
+        public static void Convert_R2A(string input)
         {
+            var limit = input.Length;
+            for (int i = 0; i < limit; i++)
+            {
+                if (input[i] == 'M'){
+                    thousands.Add(input[i]);
+                    input.Remove(i,1);
+                    limit -= 1;
+                }else if (input[i] == 'C' && input[i + 1] == 'M') { 
+                    hundreds.Add(input[i]);
+                    hundreds.Add(input[i + 1]);
+                    input.Remove(i,2);
+                    limit -= 2;
+                }else if (input[i] == 'C'&&input[i]=='D'){
+                    hundreds.Add(input[i]);
+                    hundreds.Add(input[i + 1]);
+                    input.Remove(i,2);
+                    limit -= 2;
+                }else if (input[i]=='C'){
+                    hundreds.Add(input[i]);
+                    input.Remove(i,1);
+                    limit -= 1;
+                }else if (input[i] == 'X' && input[i + 1] == 'C'){
+                    tens.Add(input[i]);
+                    tens.Add(input[i + 1]);
+                    input.Remove(i,2);
+                    limit -= 2;
+                }else if (input[i] == 'X' && input[i] == 'L'){
+                    tens.Add(input[i]);
+                    tens.Add(input[i + 1]);
+                    input.Remove(i,2);
+                    limit -= 2;
+                }else if (input[i] == 'X'){
+                    tens.Add(input[i]);
+                    input.Remove(i,1);
+                    limit -= 1;
+                }else if (input[i] == 'I' && input[i + 1] == 'X'){
+                    ones.Add(input[i]);
+                    ones.Add(input[i + 1]);
+                    input.Remove(i,2);
+                    limit -= 2;
+                }else if (input[i] == 'I' && input[i] == 'V'){
+                    ones.Add(input[i]);
+                    ones.Add(input[i + 1]);
+                    input.Remove(i,2);
+                    limit -= 2;
+                }else if (input[i] == 'I'){
+                    ones.Add(input[i]);
+                    input.Remove(i,1);
+                    limit -= 1;
+                }
+                i = 0;
+                Console.WriteLine(limit);
+            }
 
-            return "";
+        }
+
+        public static void Convert_R2A()
+        {
+            foreach (var v in thousands)
+            {
+                Console.Write(v);
+            }
+            Console.WriteLine("----");
+
+            foreach (var v in hundreds)
+            {
+                Console.Write(v);
+            }
+            Console.WriteLine("----");
+
+            foreach (var v in tens)
+            {
+                Console.Write(v);
+            }
+            Console.WriteLine("----");
+            foreach (var v in ones)
+            {
+                Console.Write(v);
+            }  
         }
 
         private void btnConvert_Click(object sender, EventArgs e)
@@ -231,6 +311,12 @@ namespace HW1_JMIBARRA_21241103
                 
                     if(!IsRomanic)
                         MessageBox.Show("ERROR: Not a Valid Roman Number", "Syntax Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+                    else
+                    {
+                        Console.WriteLine("Entro");
+                        Convert_R2A(txtInput.Text);
+                        Convert_R2A();
+                    }
                 }
            //end validate Roman Nomeclature
 
