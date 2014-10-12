@@ -3,6 +3,7 @@ using System.Collections;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using kXtensions;
 
@@ -66,6 +67,13 @@ namespace HW1_JMIBARRA_21241103
             return true;
         }
 
+        public static bool Validate_Romanic(string nomeclature)
+        {
+            const string romanPattern = @"^M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$";
+
+            return Regex.Match(nomeclature, romanPattern).Success;
+
+        }
 
         public static int Positional_Value(int pos)
         {
@@ -194,28 +202,55 @@ namespace HW1_JMIBARRA_21241103
             return nomeclature;
         }
 
-        public static string Convert_R2A(string Input)
+        public static string Convert_R2A(string input)
         {
+
             return "";
         }
 
         private void btnConvert_Click(object sender, EventArgs e)
         {
-            txtAns.Clear();
-            Boolean IsNum;
+            Boolean IsNum=false;
             Boolean IsRanged=false;
-            if (!cmbFrom.Text.Equals("") && !cmbTo.Text.Equals(""))
+            Boolean IsRomanic = false;
+            //validate Arabic number
+            if (!cmbFrom.Text.Equals("") && !cmbTo.Text.Equals("")) { 
                 if (cmbFrom.Text.Equals("Arabic"))
                 {
-                     IsNum=Validate_Arabic(txtInput.Text);
+                    IsNum=Validate_Arabic(txtInput.Text);
                     if (IsNum == true)
                         IsRanged=Validate_Range(txtInput.Text);
 
                 }
+            //end validate Arabic Number
 
-            if (IsRanged)
-               txtAns.Text = Convert_A2R(txtInput.Text);
-            
+            //validate Roman nomeclature
+                if (cmbFrom.Text.Equals("Roman")) { 
+                    if (Validate_Romanic(txtInput.Text.ToUpper()))
+                        IsRomanic = true;
+                
+                    if(!IsRomanic)
+                        MessageBox.Show("ERROR: Not a Valid Roman Number", "Syntax Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+                }
+           //end validate Roman Nomeclature
+
+            }
+
+            if (cmbFrom.Text.Equals("Arabic") && cmbTo.Text.Equals("Roman")) { 
+
+                if (IsRanged)
+                   txtAns.Text = Convert_A2R(txtInput.Text);
+
+            }else if (cmbFrom.Text.Equals(cmbTo.Text)&&IsNum){
+
+                txtAns.Text = txtInput.Text;
+
+            }
+            else if (cmbFrom.Text.Equals(cmbTo.Text)&&IsRomanic)
+            {
+                txtAns.Text = txtInput.Text.ToUpper();
+            }
+
         }
 
     }
