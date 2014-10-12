@@ -43,6 +43,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnConvert = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.ckbSum = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -170,31 +171,44 @@
             // 
             // btnConvert
             // 
-            this.btnConvert.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConvert.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConvert.Location = new System.Drawing.Point(105, 83);
             this.btnConvert.Name = "btnConvert";
-            this.btnConvert.Size = new System.Drawing.Size(100, 18);
+            this.btnConvert.Size = new System.Drawing.Size(100, 27);
             this.btnConvert.TabIndex = 9;
-            this.btnConvert.Text = "convert";
+            this.btnConvert.Text = "Convert";
             this.btnConvert.UseVisualStyleBackColor = true;
             this.btnConvert.Click += new System.EventHandler(this.btnConvert_Click);
             // 
             // pictureBox2
             // 
             this.pictureBox2.Image = global::HW1_JMIBARRA_21241103.Properties.Resources.reload_md;
-            this.pictureBox2.Location = new System.Drawing.Point(208, 9);
+            this.pictureBox2.Location = new System.Drawing.Point(198, 9);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(38, 32);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 10;
             this.pictureBox2.TabStop = false;
             // 
+            // ckbSum
+            // 
+            this.ckbSum.AutoSize = true;
+            this.ckbSum.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckbSum.Location = new System.Drawing.Point(26, 111);
+            this.ckbSum.Name = "ckbSum";
+            this.ckbSum.Size = new System.Drawing.Size(48, 18);
+            this.ckbSum.TabIndex = 11;
+            this.ckbSum.Text = "Sum";
+            this.ckbSum.UseVisualStyleBackColor = true;
+            this.ckbSum.CheckedChanged += new System.EventHandler(this.ckbSum_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(465, 205);
+            this.ClientSize = new System.Drawing.Size(470, 199);
+            this.Controls.Add(this.ckbSum);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.btnConvert);
             this.Controls.Add(this.label4);
@@ -233,6 +247,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnConvert;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.CheckBox ckbSum;
     }
 }
 

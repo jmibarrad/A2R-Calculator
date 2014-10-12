@@ -40,6 +40,7 @@ namespace HW1_JMIBARRA_21241103
             txtAns.Text = "Wait for Answer...";
             cmbFrom.Text = "Arabic";
             cmbTo.Text = "Roman";
+
         }
 
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
@@ -266,10 +267,32 @@ namespace HW1_JMIBARRA_21241103
             return number;
         }
 
-        public static void sumRomanNumber()
+        public static string[] tokens;
+        public static Boolean validateSum(string input)
         {
-            
+            Boolean allTokensPassed=true;
+            input=input.Replace(" ",string.Empty).ToUpper();
+            tokens = input.Split('+');
+            for (int i = 0; i < tokens.Length; i++)
+            {
+                if (!Validate_Romanic(tokens[i]))
+                {
+                    allTokensPassed = false;
+                }
+            }
 
+            return allTokensPassed;
+        }
+
+        public static int Sum()
+        {
+            int sumValue = 0;
+            for (int i = 0; i < tokens.Length; i++)
+            {
+                Convert_R2A(tokens[i]);
+                sumValue += Convert_R2A();
+            }
+            return sumValue;
         }
 
         private void btnConvert_Click(object sender, EventArgs e)
@@ -279,7 +302,7 @@ namespace HW1_JMIBARRA_21241103
             Boolean IsRomanic = false;
             //validate Arabic number
             if (!cmbFrom.Text.Equals("") && !cmbTo.Text.Equals("")) { 
-                if (cmbFrom.Text.Equals("Arabic"))
+                if (cmbFrom.Text.Equals("Arabic")&&ckbSum.Checked==false)
                 {
                     IsNum=Validate_Arabic(txtInput.Text);
                     if (IsNum == true)
@@ -289,7 +312,7 @@ namespace HW1_JMIBARRA_21241103
             //end validate Arabic Number
 
             //validate Roman nomeclature
-                if (cmbFrom.Text.Equals("Roman")) { 
+                if (cmbFrom.Text.Equals("Roman")&&ckbSum.Checked==false) { 
                     if (Validate_Romanic(txtInput.Text.ToUpper()))
                         IsRomanic = true;
                 
@@ -305,7 +328,8 @@ namespace HW1_JMIBARRA_21241103
 
             }
 
-            if (cmbFrom.Text.Equals("Arabic") && cmbTo.Text.Equals("Roman")) { 
+            if (cmbFrom.Text.Equals("Arabic") && cmbTo.Text.Equals("Roman") && ckbSum.Checked == false)
+            { 
 
                 if (IsRanged)
                    txtAns.Text = Convert_A2R(txtInput.Text);
@@ -320,6 +344,38 @@ namespace HW1_JMIBARRA_21241103
                 txtAns.Text = txtInput.Text.ToUpper();
             }
 
+            //Sum Roman Numbers
+            if (ckbSum.Checked)
+            {
+                if (validateSum(txtInput.Text))
+                {
+                    txtAns.Text = Sum().ToString();
+                }
+                else
+                {
+                    MessageBox.Show("ERROR: Only Character Permited: '+'.", "Syntax Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+
+                }
+
+            }
+
+        }
+
+        private void ckbSum_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ckbSum.Checked)
+            {
+                cmbFrom.Enabled = false;
+                cmbTo.Enabled = false;
+                btnConvert.Text = "Sum";
+            }
+            else
+            {
+                cmbFrom.Enabled = true;
+                cmbTo.Enabled = true;
+                btnConvert.Text = "Convert";
+
+            }
         }
 
     }
