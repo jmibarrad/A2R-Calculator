@@ -38,8 +38,11 @@ namespace HW1_JMIBARRA_21241103
             
             SendMessage(txtInput.Handle, EM_SETCUEBANNER, 0, "Input here...");
             txtAns.Text = "Wait for Answer...";
+            txtAns2.Text = "Answer in Roman #s";
             cmbFrom.Text = "Arabic";
             cmbTo.Text = "Roman";
+            lblAns.Visible = false;
+            txtAns2.Visible = false;
 
         }
 
@@ -350,6 +353,7 @@ namespace HW1_JMIBARRA_21241103
                 if (validateSum(txtInput.Text))
                 {
                     txtAns.Text = Sum().ToString();
+                    txtAns2.Text = Convert_A2R(Sum().ToString());
                 }
                 else
                 {
@@ -367,12 +371,16 @@ namespace HW1_JMIBARRA_21241103
             {
                 cmbFrom.Enabled = false;
                 cmbTo.Enabled = false;
+                lblAns.Visible = true;
+                txtAns2.Visible = true;
                 btnConvert.Text = "Sum";
             }
             else
             {
                 cmbFrom.Enabled = true;
                 cmbTo.Enabled = true;
+                lblAns.Visible = false;
+                txtAns2.Visible = false;
                 btnConvert.Text = "Convert";
 
             }

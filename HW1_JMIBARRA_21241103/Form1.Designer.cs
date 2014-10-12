@@ -44,6 +44,8 @@
             this.btnConvert = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.ckbSum = new System.Windows.Forms.CheckBox();
+            this.txtAns2 = new System.Windows.Forms.TextBox();
+            this.lblAns = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -202,12 +204,35 @@
             this.ckbSum.UseVisualStyleBackColor = true;
             this.ckbSum.CheckedChanged += new System.EventHandler(this.ckbSum_CheckedChanged);
             // 
+            // txtAns2
+            // 
+            this.txtAns2.Enabled = false;
+            this.txtAns2.Location = new System.Drawing.Point(120, 182);
+            this.txtAns2.Name = "txtAns2";
+            this.txtAns2.Size = new System.Drawing.Size(333, 20);
+            this.txtAns2.TabIndex = 12;
+            // 
+            // lblAns
+            // 
+            this.lblAns.AutoSize = true;
+            this.lblAns.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.lblAns.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblAns.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAns.ForeColor = System.Drawing.Color.Coral;
+            this.lblAns.Location = new System.Drawing.Point(26, 182);
+            this.lblAns.Name = "lblAns";
+            this.lblAns.Size = new System.Drawing.Size(88, 25);
+            this.lblAns.TabIndex = 13;
+            this.lblAns.Text = "Answer2:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(470, 199);
+            this.ClientSize = new System.Drawing.Size(470, 213);
+            this.Controls.Add(this.lblAns);
+            this.Controls.Add(this.txtAns2);
             this.Controls.Add(this.ckbSum);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.btnConvert);
@@ -248,6 +273,8 @@
         private System.Windows.Forms.Button btnConvert;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.CheckBox ckbSum;
+        private System.Windows.Forms.TextBox txtAns2;
+        private System.Windows.Forms.Label lblAns;
     }
 }
 
