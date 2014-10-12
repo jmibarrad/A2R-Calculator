@@ -227,24 +227,35 @@ namespace HW1_JMIBARRA_21241103
             }
         }
 
-        public static void Convert_R2A()
+        public static int Convert_R2A()
         {
-            for (int i = 0; i < values.Count; i++)
+            int number=0;
+            int limit = values.Count;
+            for (int i = 0; i < limit; i++)
             {
                 for (int j = 0; j < i; j++)
                 {
                     if (Int32.Parse(values[j].ToString()) < Int32.Parse(values[j + 1].ToString()))
                     {
                         valuesCorrect.Add(Int32.Parse(values[j + 1].ToString()) - Int32.Parse(values[j].ToString()));
+                        values[j] = 0;
+                        values[j + 1] = 0;
                     }
                     else
                     {
-                        valuesCorrect.Add(Int32.Parse(values[i].ToString()));
-                    }
+                        valuesCorrect.Add(Int32.Parse(values[j].ToString()));
+                        values[j] = 0;
 
+                    }
 
                 }
             }
+
+            foreach (var v in valuesCorrect)
+            {
+                number += (int)v;
+            }
+            return number;
         }
 
         private void btnConvert_Click(object sender, EventArgs e)
@@ -273,7 +284,7 @@ namespace HW1_JMIBARRA_21241103
                     else
                     {
                         Convert_R2A(txtInput.Text);
-                        //Convert_R2A();
+                        Convert_R2A();
                     }
                 }
            //end validate Roman Nomeclature
