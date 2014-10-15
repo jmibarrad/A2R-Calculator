@@ -79,5 +79,15 @@ namespace HW1_JMIBARRA_21241103.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap viceversa {
+            get {
+                object obj = ResourceManager.GetObject("viceversa", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

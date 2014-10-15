@@ -30,8 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.txtInput = new System.Windows.Forms.TextBox();
             this.cmbFrom = new System.Windows.Forms.ComboBox();
             this.txtAns = new System.Windows.Forms.TextBox();
@@ -42,13 +40,20 @@
             this.cmbTo = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.btnConvert = new System.Windows.Forms.Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.ckbSum = new System.Windows.Forms.CheckBox();
             this.txtAns2 = new System.Windows.Forms.TextBox();
             this.lblAns = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.rbSubtract = new System.Windows.Forms.RadioButton();
+            this.rbMultiply = new System.Windows.Forms.RadioButton();
+            this.rbDivide = new System.Windows.Forms.RadioButton();
+            this.rbAdd = new System.Windows.Forms.RadioButton();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -57,34 +62,15 @@
             this.label1.BackColor = System.Drawing.Color.OldLace;
             this.label1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label1.Location = new System.Drawing.Point(40, 58);
+            this.label1.Location = new System.Drawing.Point(40, 77);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(46, 19);
             this.label1.TabIndex = 0;
             this.label1.Text = "Input";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Image = ((System.Drawing.Image)(resources.GetObject("label2.Image")));
-            this.label2.Location = new System.Drawing.Point(12, 28);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(0, 13);
-            this.label2.TabIndex = 1;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(26, 60);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(16, 18);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
-            // 
             // txtInput
             // 
-            this.txtInput.Location = new System.Drawing.Point(105, 57);
+            this.txtInput.Location = new System.Drawing.Point(105, 76);
             this.txtInput.Name = "txtInput";
             this.txtInput.Size = new System.Drawing.Size(100, 20);
             this.txtInput.TabIndex = 3;
@@ -100,7 +86,7 @@
             // txtAns
             // 
             this.txtAns.Enabled = false;
-            this.txtAns.Location = new System.Drawing.Point(120, 156);
+            this.txtAns.Location = new System.Drawing.Point(120, 251);
             this.txtAns.Name = "txtAns";
             this.txtAns.Size = new System.Drawing.Size(333, 20);
             this.txtAns.TabIndex = 5;
@@ -111,8 +97,8 @@
             this.label3.BackColor = System.Drawing.SystemColors.HighlightText;
             this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label3.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Coral;
-            this.label3.Location = new System.Drawing.Point(26, 150);
+            this.label3.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.label3.Location = new System.Drawing.Point(26, 245);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(78, 25);
             this.label3.TabIndex = 6;
@@ -164,8 +150,8 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Lucida Console", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Maroon;
-            this.label4.Location = new System.Drawing.Point(69, 9);
+            this.label4.ForeColor = System.Drawing.Color.Purple;
+            this.label4.Location = new System.Drawing.Point(90, 20);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(290, 21);
             this.label4.TabIndex = 8;
@@ -174,7 +160,7 @@
             // btnConvert
             // 
             this.btnConvert.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConvert.Location = new System.Drawing.Point(105, 83);
+            this.btnConvert.Location = new System.Drawing.Point(105, 102);
             this.btnConvert.Name = "btnConvert";
             this.btnConvert.Size = new System.Drawing.Size(100, 27);
             this.btnConvert.TabIndex = 9;
@@ -182,32 +168,10 @@
             this.btnConvert.UseVisualStyleBackColor = true;
             this.btnConvert.Click += new System.EventHandler(this.btnConvert_Click);
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::HW1_JMIBARRA_21241103.Properties.Resources.reload_md;
-            this.pictureBox2.Location = new System.Drawing.Point(198, 9);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(38, 32);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 10;
-            this.pictureBox2.TabStop = false;
-            // 
-            // ckbSum
-            // 
-            this.ckbSum.AutoSize = true;
-            this.ckbSum.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ckbSum.Location = new System.Drawing.Point(26, 111);
-            this.ckbSum.Name = "ckbSum";
-            this.ckbSum.Size = new System.Drawing.Size(48, 18);
-            this.ckbSum.TabIndex = 11;
-            this.ckbSum.Text = "Sum";
-            this.ckbSum.UseVisualStyleBackColor = true;
-            this.ckbSum.CheckedChanged += new System.EventHandler(this.ckbSum_CheckedChanged);
-            // 
             // txtAns2
             // 
             this.txtAns2.Enabled = false;
-            this.txtAns2.Location = new System.Drawing.Point(120, 182);
+            this.txtAns2.Location = new System.Drawing.Point(120, 277);
             this.txtAns2.Name = "txtAns2";
             this.txtAns2.Size = new System.Drawing.Size(333, 20);
             this.txtAns2.TabIndex = 12;
@@ -218,22 +182,113 @@
             this.lblAns.BackColor = System.Drawing.SystemColors.HighlightText;
             this.lblAns.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblAns.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAns.ForeColor = System.Drawing.Color.Coral;
-            this.lblAns.Location = new System.Drawing.Point(26, 182);
+            this.lblAns.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.lblAns.Location = new System.Drawing.Point(26, 277);
             this.lblAns.Name = "lblAns";
             this.lblAns.Size = new System.Drawing.Size(88, 25);
             this.lblAns.TabIndex = 13;
             this.lblAns.Text = "Answer2:";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.rbAdd);
+            this.groupBox2.Controls.Add(this.rbSubtract);
+            this.groupBox2.Controls.Add(this.rbMultiply);
+            this.groupBox2.Controls.Add(this.rbDivide);
+            this.groupBox2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(26, 164);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(427, 65);
+            this.groupBox2.TabIndex = 14;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Operations";
+            // 
+            // rbSubtract
+            // 
+            this.rbSubtract.AutoSize = true;
+            this.rbSubtract.Location = new System.Drawing.Point(117, 30);
+            this.rbSubtract.Name = "rbSubtract";
+            this.rbSubtract.Size = new System.Drawing.Size(88, 19);
+            this.rbSubtract.TabIndex = 14;
+            this.rbSubtract.TabStop = true;
+            this.rbSubtract.Text = "Subtraction";
+            this.rbSubtract.UseVisualStyleBackColor = true;
+            this.rbSubtract.CheckedChanged += new System.EventHandler(this.rbSubtract_CheckedChanged);
+            // 
+            // rbMultiply
+            // 
+            this.rbMultiply.AutoSize = true;
+            this.rbMultiply.Location = new System.Drawing.Point(227, 30);
+            this.rbMultiply.Name = "rbMultiply";
+            this.rbMultiply.Size = new System.Drawing.Size(100, 19);
+            this.rbMultiply.TabIndex = 13;
+            this.rbMultiply.TabStop = true;
+            this.rbMultiply.Text = "Multiplication";
+            this.rbMultiply.UseVisualStyleBackColor = true;
+            this.rbMultiply.CheckedChanged += new System.EventHandler(this.rbMultiply_CheckedChanged);
+            // 
+            // rbDivide
+            // 
+            this.rbDivide.AutoSize = true;
+            this.rbDivide.Location = new System.Drawing.Point(347, 30);
+            this.rbDivide.Name = "rbDivide";
+            this.rbDivide.Size = new System.Drawing.Size(67, 19);
+            this.rbDivide.TabIndex = 12;
+            this.rbDivide.TabStop = true;
+            this.rbDivide.Text = "Division";
+            this.rbDivide.UseVisualStyleBackColor = true;
+            this.rbDivide.CheckedChanged += new System.EventHandler(this.rbDivide_CheckedChanged);
+            // 
+            // rbAdd
+            // 
+            this.rbAdd.AutoSize = true;
+            this.rbAdd.Location = new System.Drawing.Point(16, 30);
+            this.rbAdd.Name = "rbAdd";
+            this.rbAdd.Size = new System.Drawing.Size(72, 19);
+            this.rbAdd.TabIndex = 15;
+            this.rbAdd.TabStop = true;
+            this.rbAdd.Text = "Addition";
+            this.rbAdd.UseVisualStyleBackColor = true;
+            this.rbAdd.CheckedChanged += new System.EventHandler(this.rbAdd_CheckedChanged);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::HW1_JMIBARRA_21241103.Properties.Resources.viceversa;
+            this.pictureBox2.Location = new System.Drawing.Point(215, 9);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(52, 42);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 10;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(26, 79);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(16, 18);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Image = ((System.Drawing.Image)(resources.GetObject("label2.Image")));
+            this.label2.Location = new System.Drawing.Point(12, 28);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(0, 13);
+            this.label2.TabIndex = 1;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(470, 213);
+            this.ClientSize = new System.Drawing.Size(485, 338);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.lblAns);
             this.Controls.Add(this.txtAns2);
-            this.Controls.Add(this.ckbSum);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.btnConvert);
             this.Controls.Add(this.label4);
@@ -247,10 +302,12 @@
             this.Name = "Form1";
             this.Text = "A2R";
             this.TransparencyKey = System.Drawing.Color.Turquoise;
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -272,9 +329,13 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnConvert;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.CheckBox ckbSum;
         private System.Windows.Forms.TextBox txtAns2;
         private System.Windows.Forms.Label lblAns;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.RadioButton rbSubtract;
+        private System.Windows.Forms.RadioButton rbMultiply;
+        private System.Windows.Forms.RadioButton rbDivide;
+        private System.Windows.Forms.RadioButton rbAdd;
     }
 }
 

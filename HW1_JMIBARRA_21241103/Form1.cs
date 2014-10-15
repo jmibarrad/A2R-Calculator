@@ -262,6 +262,7 @@ namespace HW1_JMIBARRA_21241103
                     values[i] = 0; 
                 }
             }
+
             foreach (var v in valuesCorrect)
             {
                 number += (Int32)v;
@@ -271,11 +272,22 @@ namespace HW1_JMIBARRA_21241103
         }
 
         public static string[] tokens;
+        public static List<char> operators = new List<char>();
+        public static char[] delimiters = {'+','-','/','*'};
         public static Boolean validateSum(string input)
         {
             Boolean allTokensPassed=true;
             input=input.Replace(" ",string.Empty).ToUpper();
-            tokens = input.Split('+');
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (input[i].Equals('+') || input[i].Equals('-') || input[i].Equals('/') || input[i].Equals('*'))
+                {
+                    operators.Add(input[i]);
+                }
+                
+            }
+
+            tokens = input.Split(delimiters);
             for (int i = 0; i < tokens.Length; i++)
             {
                 if (!Validate_Romanic(tokens[i]))
@@ -287,14 +299,43 @@ namespace HW1_JMIBARRA_21241103
             return allTokensPassed;
         }
 
+        public static Boolean validateOperations()
+        {
+            return true;
+        }
+
         public static int Sum()
         {
             int sumValue = 0;
+    
+            int contDelimiters=0;
             for (int i = 0; i < tokens.Length; i++)
             {
-                Convert_R2A(tokens[i]);
-                sumValue += Convert_R2A();
+                if (i == 0) { 
+                    Convert_R2A(tokens[0]);
+                    sumValue = Convert_R2A();
+                }
+                else { 
+                    Convert_R2A(tokens[i]);
+
+                    switch (operators[contDelimiters])
+                    {
+                        case '+': sumValue += Convert_R2A();
+                            break;
+                        case '-': sumValue -= Convert_R2A();
+                            break;
+                        case '*': sumValue *= Convert_R2A();
+                            break;
+                        case '/': sumValue /= Convert_R2A();
+                            break;
+                    }
+                    contDelimiters++;
+                }
+                Console.WriteLine("val: "+sumValue);
+
             }
+            
+            
             return sumValue;
         }
 
@@ -305,7 +346,7 @@ namespace HW1_JMIBARRA_21241103
             Boolean IsRomanic = false;
             //validate Arabic number
             if (!cmbFrom.Text.Equals("") && !cmbTo.Text.Equals("")) { 
-                if (cmbFrom.Text.Equals("Arabic")&&ckbSum.Checked==false)
+                if (cmbFrom.Text.Equals("Arabic") && rbAdd.Checked==false)
                 {
                     IsNum=Validate_Arabic(txtInput.Text);
                     if (IsNum == true)
@@ -315,7 +356,7 @@ namespace HW1_JMIBARRA_21241103
             //end validate Arabic Number
 
             //validate Roman nomeclature
-                if (cmbFrom.Text.Equals("Roman")&&ckbSum.Checked==false) { 
+                if (cmbFrom.Text.Equals("Roman") && rbAdd.Checked==false) { 
                     if (Validate_Romanic(txtInput.Text.ToUpper()))
                         IsRomanic = true;
                 
@@ -331,7 +372,7 @@ namespace HW1_JMIBARRA_21241103
 
             }
 
-            if (cmbFrom.Text.Equals("Arabic") && cmbTo.Text.Equals("Roman") && ckbSum.Checked == false)
+            if (cmbFrom.Text.Equals("Arabic") && cmbTo.Text.Equals("Roman") && rbAdd.Checked == false)
             { 
 
                 if (IsRanged)
@@ -348,7 +389,7 @@ namespace HW1_JMIBARRA_21241103
             }
 
             //Sum Roman Numbers
-            if (ckbSum.Checked)
+            if (rbAdd.Checked)
             {
                 if (validateSum(txtInput.Text))
                 {
@@ -362,18 +403,18 @@ namespace HW1_JMIBARRA_21241103
                 }
 
             }
-
+            operators.Clear();
         }
 
-        private void ckbSum_CheckedChanged(object sender, EventArgs e)
+       private void rbSubtract_CheckedChanged(object sender, EventArgs e)
         {
-            if (ckbSum.Checked)
+            if (rbSubtract.Checked)
             {
                 cmbFrom.Enabled = false;
                 cmbTo.Enabled = false;
                 lblAns.Visible = true;
                 txtAns2.Visible = true;
-                btnConvert.Text = "Sum";
+                btnConvert.Text = "Subtract";
             }
             else
             {
@@ -385,6 +426,70 @@ namespace HW1_JMIBARRA_21241103
 
             }
         }
+
+        private void rbMultiply_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbMultiply.Checked)
+            {
+                cmbFrom.Enabled = false;
+                cmbTo.Enabled = false;
+                lblAns.Visible = true;
+                txtAns2.Visible = true;
+                btnConvert.Text = "Multiply";
+            }
+            else
+            {
+                cmbFrom.Enabled = true;
+                cmbTo.Enabled = true;
+                lblAns.Visible = false;
+                txtAns2.Visible = false;
+                btnConvert.Text = "Convert";
+
+            }
+        }
+
+        private void rbDivide_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbDivide.Checked)
+            {
+                cmbFrom.Enabled = false;
+                cmbTo.Enabled = false;
+                lblAns.Visible = true;
+                txtAns2.Visible = true;
+                btnConvert.Text = "Divide";
+            }
+            else
+            {
+                cmbFrom.Enabled = true;
+                cmbTo.Enabled = true;
+                lblAns.Visible = false;
+                txtAns2.Visible = false;
+                btnConvert.Text = "Convert";
+
+            }
+        }
+
+        private void rbAdd_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbAdd.Checked)
+            {
+                cmbFrom.Enabled = false;
+                cmbTo.Enabled = false;
+                lblAns.Visible = true;
+                txtAns2.Visible = true;
+                btnConvert.Text = "Add";
+            }
+            else
+            {
+                cmbFrom.Enabled = true;
+                cmbTo.Enabled = true;
+                lblAns.Visible = false;
+                txtAns2.Visible = false;
+                btnConvert.Text = "Convert";
+
+            }
+        }
+
 
     }
 }
