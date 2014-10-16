@@ -274,6 +274,7 @@ namespace HW1_JMIBARRA_21241103
         public static string[] tokens;
         public static List<char> operators = new List<char>();
         public static char[] delimiters = {'+','-','/','*'};
+        public static Stack MainStack = new Stack(); 
         public static Boolean validateSum(string input)
         {
             Boolean allTokensPassed=true;
